@@ -1,5 +1,6 @@
 from List import *
 from Queue import *
+from Stack import *
 
 from tkinter import *
 from tkinter import messagebox
@@ -134,6 +135,60 @@ q_button_task = Button(tab_Queue, text="Добавить в конец из на
 q_button_task.grid(column=0, row=2)
 
 
+""" functions and objects to perform task 3 (stack) """
+
+tab_Stack = ttk.Frame(tab_control)
+tab_control.add(tab_Stack, text='Стек')
+tab_control.pack(expand=1, fill='both')
+
+
+# my Stack
+stack_number = Stack()
+
+
+# command to input_s_button
+def add_s_element():
+    numb = input_s_element.get()
+
+    stack_number.push(numb)
+
+    input_s_element.delete(0, END)
+
+    s_display.configure(text=stack_number.get_stack())
+
+# command to delete q botton
+def delete_s_element():
+    stack_number.pop()
+
+    s_display.configure(text=stack_number.get_stack())
+
+
+# command to start_task
+def start_s_task():
+    stack_number.task()
+    s_display.configure(text=stack_number.get_stack())
+
+
+# stack display
+s_display = Label(tab_Stack, text="Вводите по одному элементу", font=("Arial Bold", 20))
+s_display.grid(column=0, row=0)
+
+# input stack elements
+input_s_element = Entry(tab_Stack, width=50, font=("Arial Bold", 20))
+input_s_element.grid(column=0, row=1)
+input_s_element.focus()
+
+# button input
+input_s_button = Button(tab_Stack, text="Добавить в стек", font=("Arial Bold", 15), command=add_s_element)
+input_s_button.grid(column=1, row=1)
+
+# delete element button
+delete_s_button = Button(tab_Stack, text="Вытащить элемент", font=("Arial Bold", 15), command=delete_s_element)
+delete_s_button.grid(column=1, row=2)
+
+# button to task
+s_button_task = Button(tab_Stack, text="Добавить в начало из конца", font=("Arial Bold", 15), command=start_s_task)
+s_button_task.grid(column=0, row=2)
 
 
 
