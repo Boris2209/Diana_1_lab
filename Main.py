@@ -1,4 +1,5 @@
 from List import *
+from Queue import *
 
 from tkinter import *
 from tkinter import messagebox
@@ -76,6 +77,62 @@ delete_button.grid(column=1, row=2)
 # get list button
 get_list_button = Button(tab_List, text="Показать список", font=("Arial Bold", 15), command=get_list)
 get_list_button.grid(column=0, row=3)
+
+
+""" functions and objects to perform task 2 (queue) """
+
+tab_Queue = ttk.Frame(tab_control)
+tab_control.add(tab_Queue, text='Очередь')
+tab_control.pack(expand=1, fill='both')
+
+# my Queue
+queue_number = Queue()
+
+
+# command to input_q_button
+def add_q_element():
+    numb = input_q_element.get()
+
+    queue_number.insert(numb)
+
+    input_q_element.delete(0, END)
+
+    q_display.configure(text=queue_number.get_queue())
+
+# command to delete q botton
+def delete_q_element():
+    queue_number.remove()
+
+    q_display.configure(text=queue_number.get_queue())
+
+
+# command to start_task
+def start_q_task():
+    queue_number.task()
+    q_display.configure(text=queue_number.get_queue())
+
+
+# queue display
+q_display = Label(tab_Queue, text="Вводите по одному элементу", font=("Arial Bold", 20))
+q_display.grid(column=0, row=0)
+
+# input queue
+input_q_element = Entry(tab_Queue, width=50, font=("Arial Bold", 20))
+input_q_element.grid(column=0, row=1)
+input_q_element.focus()
+
+# button input
+input_q_button = Button(tab_Queue, text="Добавить в очередь", font=("Arial Bold", 15), command=add_q_element)
+input_q_button.grid(column=1, row=1)
+
+# delete element button
+delete_q_button = Button(tab_Queue, text="Вытащить последний элемент", font=("Arial Bold", 15), command=delete_q_element)
+delete_q_button.grid(column=1, row=2)
+
+# button to task
+q_button_task = Button(tab_Queue, text="Добавить в конец из начала", font=("Arial Bold", 15), command=start_q_task)
+q_button_task.grid(column=0, row=2)
+
 
 
 
